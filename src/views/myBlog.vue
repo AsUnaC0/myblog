@@ -285,6 +285,7 @@ export default {
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    overflow-y: auto;
 
     ol {
       list-style-type: decimal;
