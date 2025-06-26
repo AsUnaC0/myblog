@@ -1,22 +1,30 @@
 <template>
   <div class="info-box">
     <div v-if="contentData[contentIndex]">
-  <div v-for="(item, index) in contentData[contentIndex].sections" :key="index">
-    <!-- 大标题-->
-    <h1 :id="item.bigtitle" v-if="item.bigtitle">{{ item.bigtitle }}</h1>
-    
-    <!-- 小标题-->
-    <h3 :id="item.smalltitle" v-if="item.smalltitle">{{ item.smalltitle }}</h3>
-    
-    <!-- 内容-->
-    <p v-if="item.content" v-html="item.content"></p>
-    
-    <!-- 代码块 -->
-     <template v-if="item.code"><highLight :code="item.code" /></template>
+      <div v-for="(item, index) in contentData[contentIndex].sections" :key="index">
+        <!-- 大标题-->
+        <h1 :id="item.bigtitle" v-if="item.bigtitle">{{ item.bigtitle }}</h1>
 
-    
-  </div>
-</div>
+        <!-- 小标题-->
+        <h3 :id="item.smalltitle" v-if="item.smalltitle">{{ item.smalltitle }}</h3>
+
+        <!-- 内容-->
+        <p v-if="item.content" v-html="item.content"></p>
+
+        <!-- 图片 -->
+        <template v-if="item.image">
+          <img class="image" :src="item.image" alt="Image" />
+        </template>
+
+        <!-- 代码块 -->
+        <template v-if="item.code">
+          <highLight :code="item.code" />
+        </template>
+
+
+
+      </div>
+    </div>
     <div v-else>
       <p>内容加载中...</p>
     </div>
@@ -42,11 +50,11 @@ export default {
 
 <style scoped>
 .info-box {
-  margin: 0 10px;
   border-radius: 8px;
   font-family: Arial, sans-serif;
   line-height: 1.6;
- max-width: 907.9px;
+  /* max-width: 907.9px; */
+  width: 100%;
 }
 
 .info-box h1 {
@@ -73,6 +81,13 @@ export default {
   border-radius: 4px;
   font-family: Consolas, monospace;
   color: red;
+}
+
+.info-box .image {
+  max-width: 770px;
+  display: block;
+  margin: 0 auto;
+
 }
 
 .info-box pre {

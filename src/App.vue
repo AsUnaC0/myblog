@@ -1,12 +1,14 @@
 <template>
   <div id="app">
     <div id="nav">
-        <router-link  class="nav-link" to="/myhome">Home</router-link>
-        <router-link  class="nav-link" to="/myblog">Blog</router-link>
-        <router-link  class="nav-link" to="/aboutme">About</router-link>
+      <router-link class="nav-link" to="/myhome">Home</router-link>
+      <router-link class="nav-link" to="/myblog">Blog</router-link>
+      <router-link class="nav-link" to="/aboutme">About</router-link>
     </div>
     <div :style="{ backgroundColor: currentColor }" id="banner">
-      <router-view></router-view>
+      <keep-alive include="AboutMe,ChatBot">
+        <router-view />
+      </keep-alive>
     </div>
   </div>
 </template>
@@ -20,7 +22,7 @@ export default {
   },
   computed: {
     currentColor() {
-      return this.$store.state.currentColor;
+      return this.$store.getters.currentColor;
     },
   },
   methods: {
@@ -34,12 +36,14 @@ export default {
   padding: 0;
   box-sizing: border-box;
 }
+
 html,
 body {
   height: 100vh;
   width: 100vw;
   overflow: hidden;
 }
+
 #app {
   font-style: normal;
   display: flex;
@@ -47,6 +51,7 @@ body {
   height: 97vh;
   width: 100%;
   overflow: hidden;
+
   #nav {
     border-radius: 10px 10px 0 0;
     border-top: 2px solid black;
@@ -60,8 +65,8 @@ body {
     display: flex;
     flex-direction: row;
     gap: 10px;
-   
-     .nav-link {
+
+    .nav-link {
       font-family: "Times New Roman", Times, serif;
       padding-right: 10px;
       height: 100%;
@@ -72,12 +77,15 @@ body {
       justify-content: center;
       text-decoration: none;
       color: inherit;
+
       &:nth-child(1) {
         padding-left: 15px;
       }
+
       &:not(:last-child) {
         border-right: 1px solid black;
       }
+
       &.router-link-exact-active::after,
       &:hover::after {
         content: "o";
@@ -88,26 +96,27 @@ body {
       }
     }
   }
-  #banner {
-  position: relative;
-  flex: 1;
-  overflow: hidden;
-  border: 2px solid black;
-  border-radius: 0 0 10px 10px;
-}
 
-#banner::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url('@/assets/images/line.png') no-repeat center center;
-  background-attachment: fixed;
-  background-size: cover;
-  opacity: 0.2;
-  z-index: 0; 
-}
+  #banner {
+    position: relative;
+    flex: 1;
+    overflow: hidden;
+    border: 2px solid black;
+    border-radius: 0 0 10px 10px;
+  }
+
+  #banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('@/assets/images/line.png') no-repeat center center;
+    background-attachment: fixed;
+    background-size: cover;
+    opacity: 0.2;
+    z-index: 0;
+  }
 }
 </style>
