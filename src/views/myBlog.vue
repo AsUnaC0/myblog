@@ -29,9 +29,9 @@ export default {
           index: 0,
           children: [
             {
-              mainLabel: '整体结构',
-              label: '整体结构',
-              anchor: '整体结构',
+              mainLabel: '整体架构',
+              label: '整体架构',
+              anchor: '整体架构',
             },
             {
               mainLabel: '首页模块',
@@ -220,28 +220,62 @@ export default {
             }
           ]
         },
+        {
+          mainLabel: '咸虾米壁纸-uniapp',
+          label: '咸虾米壁纸-uniapp',
+          index: 1,
+        },
+        {
+          mainLabel: '智慧商城-vue2',
+          label: '智慧商城-vue2',
+          index: 2,
+        },
+        {
+          mainLabel: '大事件管理-vue3',
+          label: '大事件管理-vue3',
+          index: 3,
+        },
+        {
+          mainLabel: '校园美食分享平台WebAPI设计',
+          label: '校园美食分享平台WebAPI设计',
+          index: 4,
+        }
       ],
       value: 0,
       defaultProps: {
         children: 'children',
         label: 'label'
       },
-      title: '小兔鲜商城-uniapp',
+      title: '我的项目介绍',
     };
   },
   methods: {
     handleNodeClick(data) {
-      this.title = data.mainLabel;
+      // 更新标题
+      this.title = data.mainLabel || data.label;
+
+      // 如果有anchor，滚动到对应位置
       if (data.anchor) {
         this.$nextTick(() => {
-          document.getElementById(data.anchor).scrollIntoView({
-            behavior: "smooth",
-            block: "start",
-          });
-        })
+          const element = document.getElementById(data.anchor);
+          if (element) {
+            element.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
       }
-      if (data.index) {
-        this.value = data.index
+
+      // 如果有index，更新value
+      if (data.index !== undefined) {
+        this.value = data.index;
+      }
+
+      // 如果是顶级节点，重置到默认内容
+      if (data.index === 0) { // 小兔鲜的index是0
+        this.value = 0;
+        // 这里可以添加其他重置逻辑
       }
     }
   },
@@ -271,21 +305,25 @@ export default {
 
   .toc-container {
     // animation: move 0.5s ease-in-out;
+    flex: 0 0 250px;
+    width: 250px;
+    min-width: 250px;
     padding: 10px;
     z-index: 1;
     border: 1px solid black;
     border-radius: 20px;
-    height: 0;
+    height: 100%;
     font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
     line-height: 1.6;
-    min-width: 150px;
-    height: 100%;
-    flex: 1;
     background-color: white;
-    display: flex;
-    flex-direction: column;
     overflow: hidden;
     overflow-y: auto;
+
+
+    .el-tree {
+      width: 100%;
+      min-width: 100%;
+    }
 
     ol {
       list-style-type: decimal;
@@ -320,9 +358,11 @@ export default {
 
   .content {
     // animation: move 0.5s ease-in-out;
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
     z-index: 1;
     border-radius: 10px;
-    flex: 3;
     border: 1px solid black;
     height: 100%;
     box-sizing: border-box;

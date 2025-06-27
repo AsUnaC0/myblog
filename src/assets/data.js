@@ -1352,6 +1352,66 @@ onMounted(()=>{
   },
   {
     sections: [
+      {
+        bigtitle: '咸虾米壁纸',
+        content: '我自己已经上传到微信小程序上面，可以先行体验一下',
+        image: require("@/assets/blogImages/wallpaper/wallpaper.jpg")
+      },
+      {
+        content: '待更新....'
+      }
+    ]
+  },
+  {
+    sections: [
+      {
+        bigtitle: '智慧商城',
+        smalltitle: 'https://smart-shop.itheima.net/#/',
+        content: '我的项目是本地的，黑马的智慧商城有在线版本可以体验一下'
+      },
+      {
+        content: '待更新....'
+      }
+    ]
+  },
+  {
+    sections: [
+      {
+        bigtitle: '大事件管理',
+        smalltitle: '大概展示',
+        image: require("@/assets/blogImages/bigevent/bigevent.jpg"),
+      },
+      {
+        image: require("@/assets/blogImages/bigevent/bigevent2.jpg"),
+      },
+      {
+        image: require("@/assets/blogImages/bigevent/bigevent3.jpg"),
+      },
+      {
+        image: require("@/assets/blogImages/bigevent/bigevent4.jpg"),
+      },
+      {
+        content: '待更新....'
+      }
+    ]
+  },
+  {
+    sections: [
+      {
+        bigtitle: '校园美食分享平台WebAPI设计',
+        smalltitle: '我正在设计WebAPI,基础功能已经完成，准备作为我的毕设后端',
+        content: '后端用node+express+mysql',
+        image: require("@/assets/blogImages/foodApi/foodAPI.jpg"),
+      },
+      {
+        image: require("@/assets/blogImages/foodApi/mysql.jpg"),
+      },
+      {
+        image: require("@/assets/blogImages/foodApi/api.jpg"),
+      },
+      {
+        content: '待更新....'
+      }
     ]
   }
 ]
